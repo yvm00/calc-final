@@ -24,9 +24,9 @@ function showOnDisplay(enteredValue) {
       }, 1000); 
     }
 
-    if(res.value[0] == "0"){
-      res.value =  ''
-    }
+    // if((res.value[0] == "0") && (res.value[1] !== '.')){
+    //   res.value =  '';
+    // }
 
     if ((!res.value)) {
       res.value = "";
@@ -37,7 +37,9 @@ function showOnDisplay(enteredValue) {
       setTimeout(() => {
         res.value = "";
       }, 1000);    
-    } 
+    } else if ((res.value[0] == "0") && (enteredValue !== '.') && (res.value[1] !== '.')){
+      res.value =  '';
+    }
     res.value += enteredValue;  
   }
   else{
