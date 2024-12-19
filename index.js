@@ -16,26 +16,36 @@ function calculate(value) {
 }
 
 function showOnDisplay(enteredValue) {
-  console.log(operators.includes(enteredValue))
-  console.log(res.value)
-  if(( operators.includes(enteredValue) ) && ((res.value.length == 0) || (res.value.includes(enteredValue)))){ 
-    enteredValue = "Invalid input";
-    setTimeout(() => {
-      res.value = "";
-    }, 1000); 
-  }
+  if(res.value.length<17){  
+    if(( operators.includes(enteredValue) ) && ((res.value.length == 0) || (res.value.includes(enteredValue)))){ 
+      enteredValue = "Invalid input";
+      setTimeout(() => {
+        res.value = "";
+      }, 1000); 
+    }
 
-  if ((!res.value)) {
-    res.value = "";
-  } else if((enteredValue == 0) && (res.value== '0')){ 
-      res.value = '';    
-  } else if((enteredValue == '.') && (res.value.includes('.'))) { 
-    enteredValue = " Invalid input";
+    if(res.value[0] == "0"){
+      res.value =  ''
+    }
+
+    if ((!res.value)) {
+      res.value = "";
+    } else if((enteredValue == 0) && (res.value== '0')){ 
+        res.value = '';    
+    } else if((enteredValue == '.') && (res.value.includes('.'))) { 
+      enteredValue = " Invalid input";
+      setTimeout(() => {
+        res.value = "";
+      }, 1000);    
+    } 
+    res.value += enteredValue;  
+  }
+  else{
+    res.value = 'Too long input'
     setTimeout(() => {
       res.value = "";
-    }, 1000);    
-  } 
-  res.value += enteredValue;  
+    }, 1000)
+  }
 }
 
 document.addEventListener("keydown", keyboardInputHandler);
